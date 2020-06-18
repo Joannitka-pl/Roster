@@ -1,0 +1,12 @@
+    <%= form_with model: @shift do |f| %>
+      <%= f.label :date %>
+      <%= f.date_select :date %>
+      <%= f.label :hour, 'Hours' %>
+      <%= f.select :hour, Shift.hours.keys.map {|time| [time.titleize, time]} %>
+      <br>
+      <%= f.label :studio, 'Studio' %>
+       <%= f.select :studio, Shift.studios.keys.map {|studio| [studio.titleize,studio]} %>
+       <%= f.label :user_id, 'User' %>
+       <%= f.select :user_id, %i[1 2 3] %>
+      <%= f.submit %> 
+    <% end %>
