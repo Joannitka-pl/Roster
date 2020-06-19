@@ -15,8 +15,9 @@ class ShiftsController < ApplicationController
   def edit; end
 
   def create
-    @shift = Shift.new(params.require(:shift).permit(:date, :hour, :user_id, :studio))
+    @shift = Shift.new(shift_params)
     if @shift.save
+      flash[:notice] = 'Shift was successfully created'
       redirect_to @shift
     else
       render :new
@@ -24,8 +25,9 @@ class ShiftsController < ApplicationController
   end
 
   def update
-    @shift.update(params.require(:shift).permit(:date, :hour, :user_id, :studio))
+    @shift.update(shift_params)
     if @shift.save
+      flash[:notice] = 'Shift was successfully updated'
       redirect_to @shift
     else
       render :new
@@ -40,5 +42,9 @@ class ShiftsController < ApplicationController
 
   def set_shift
     @shift = Shift.find(params[:id])
+  end
+
+  def shift_params
+    params.require(:shift).permit(:date, :hour, :user_id, :studio)
   end
 end
