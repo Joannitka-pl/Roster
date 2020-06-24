@@ -3,7 +3,6 @@ FactoryBot.define do
   factory :shift do
     studio { Shift.studios.keys.sample }
     hour { Shift.hours.keys.sample }
-    sequence(:user_id) { |n| "#{n}" }
     date { time.to_datetime }
   end
 end

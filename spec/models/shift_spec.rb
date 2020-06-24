@@ -16,19 +16,19 @@ describe Shift do
   it "is invalid without a studio" do
     shift = build(:shift, studio: nil)
     shift.valid?
-    expect(shift.errors[:studio]).to include('cannot be blank')
+    expect(shift.errors[:studio]).to include("can't be blank")
   end
   
   it "is invalid without hours" do
   shift = build(:shift, hour: nil)
   shift.valid?
-  expect(shift.errors[:hour]).to include('cannot be blank')
+  expect(shift.errors[:hour]).to include("can't be blank")
 end
 
   it "is invalid without a date" do
     shift = build(:shift, date: nil)
     shift.valid?
-    expect(shift.errors[:date]).to include('cannot be blank')
+    expect(shift.errors[:date]).to include("can't be blank")
   end
 
   it "is invalid with a duplicate combination of a studio, hours and date" do
@@ -43,7 +43,6 @@ end
       date: "3rd Jul 2020",
       hour: "1-6")
     shift_second.valid?
-    match_attributes = shift_first.attributes
-    expect(shift_second.errors[match_attributes]).to include('has already been created')
+    expect(shift_second.errors[:studio]).to include('has already been taken')
   end
 end
