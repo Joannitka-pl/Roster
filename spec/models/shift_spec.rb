@@ -9,8 +9,7 @@ describe Shift do
     shift = Shift.new(
       studio: "1",
       date: "3rd Jul 2020",
-      hour: "1-6",
-      user_id: "1")
+      hour: "1-6")
     expect(shift).to be_valid
   end
 
@@ -32,27 +31,19 @@ end
     expect(shift.errors[:date]).to include('cannot be blank')
   end
 
-  it "is invalid without an user_id" do
-    shift = build(:shift, user_id: nil)
-    shift.valid?
-    expect(shift.errors[:user_id]).to include('cannot be blank')
-  end
-
   it "is invalid with a duplicate combination of a studio, hours and date" do
     shift_first = create(
       :shift,
       studio: "1",
       date: "3rd Jul 2020",
-      hour: "1-6",
-      user_id: "1")
+      hour: "1-6")
     shift_second = build(
       :shift,
       studio: "1",
       date: "3rd Jul 2020",
-      hour: "1-6",
-      user_id: "2")
+      hour: "1-6")
     shift_second.valid?
-    match_attributes = shift_first.attributes.except(:user_id)
+    match_attributes = shift_first.attributes
     expect(shift_second.errors[match_attributes]).to include('has already been created')
   end
 end

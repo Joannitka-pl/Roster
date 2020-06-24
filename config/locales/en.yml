@@ -32,6 +32,19 @@
 en:
   shifts:
     create:
-      notice: "New shift was successfully created"
+      notice: New shift was successfully created
+      error: Could not create shift
     update:
-      notice: "Shift was successfully updated"
+      notice: Shift was successfully updated
+      error: Could not update shift
+    destroy:
+      notice: Shift was successfully removed
+    edit_header_html: <h1>Edit shift</h1>
+    new_header_html: <h1>Add new shift</h1>
+    table_headers:
+      studio_html: <th>Studio</th>
+      hours_html: <th>Hours</th>
+      date_html: <th>Date</th>
+
+    
+    

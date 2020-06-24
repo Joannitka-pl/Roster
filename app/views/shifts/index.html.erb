@@ -1,19 +1,18 @@
 <% @shifts.each do |shift| %>
   <table>
     <tr>
-      <th>Studio</th>
-      <th>Hours</th>
-      <th>Date</th>
-      <th>User</th>
+      <%= t ('shifts.table_headers.studio_html') %>
+       <%= t ('shifts.table_headers.hours_html') %>
+       <%= t ('shifts.table_headers.date_html') %>
     </tr>
       <tr>
         <th><%= shift.studio %></th>
         <th><%= shift.hour %></th>
         <th><%= shift.date.strftime("%d/%m/%y")%></th>
-        <th><%= shift.user_id %></th>
     </tr>
   </table>
-  <%= link_to 'Show', shift_path(shift) %>
+  <%= link_to 'Edit', edit_shift_path(shift) %> |
+  <%= link_to 'Delete', shift_path(shift), method: :delete %>
 <% end %>
 <br>
 <%= link_to 'Create shift', new_shift_path %>

@@ -1,12 +1,12 @@
-    <%= form_with model: @shift do |f| %>
+  
+    <%= form_with model: @shift, local: true do |f| %>
+     <%= render 'shared/errors' %>
       <%= f.label :date %>
       <%= f.date_select :date %>
       <%= f.label :hour, 'Hours' %>
-      <%= f.select :hour, Shift.hours.keys.map {|time| [time.titleize, time]} %>
+      <%= f.select :hour, @shift.hours_list %>
       <br>
       <%= f.label :studio, 'Studio' %>
-       <%= f.select :studio, Shift.studios.keys.map {|studio| [studio.titleize,studio]} %>
-       <%= f.label :user_id, 'User' %>
-       <%= f.select :user_id, %i[1 2 3] %>
+      <%= f.select :studio, @shift.studios_list %>
       <%= f.submit %> 
     <% end %>
