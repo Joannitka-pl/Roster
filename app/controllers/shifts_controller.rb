@@ -17,7 +17,7 @@ class ShiftsController < ApplicationController
   def create
     @shift = Shift.new(shift_params)
     if @shift.save
-      flash[:notice] = 'Shift was successfully created'
+      flash[:notice] = t('.notice')
       redirect_to @shift
     else
       render :new
@@ -27,7 +27,7 @@ class ShiftsController < ApplicationController
   def update
     @shift.update(shift_params)
     if @shift.save
-      flash[:notice] = 'Shift was successfully updated'
+      flash[:notice] = t('.notice')
       redirect_to @shift
     else
       render :new

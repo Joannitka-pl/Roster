@@ -30,4 +30,8 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  shifts:
+    create:
+      notice: "New shift was successfully created"
+    update:
+      notice: "Shift was successfully updated"
