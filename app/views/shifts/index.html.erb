@@ -1,9 +1,9 @@
 <% @shifts.each do |shift| %>
   <table>
     <tr>
-      <%= t ('shifts.table_headers.studio_html') %>
-       <%= t ('shifts.table_headers.hours_html') %>
-       <%= t ('shifts.table_headers.date_html') %>
+      <th><%= t ('shifts.table_headers.studio_html') %></th>
+       <th><%= t ('shifts.table_headers.hours_html') %></th>
+       <th><%= t ('shifts.table_headers.date_html') %></th>
     </tr>
       <tr>
         <th><%= shift.studio %></th>

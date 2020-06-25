@@ -2,15 +2,7 @@ require 'rails_helper'
 
 describe Shift do
   it "has a valid factory" do
-    expect(FactoryBot.build(:shift)).to be_valid
-  end
-
-  it "is valid with a studio, hours, date and user_id" do
-    shift = Shift.new(
-      studio: "1",
-      date: "3rd Jul 2020",
-      hour: "1-6")
-    expect(shift).to be_valid
+    expect(build(:shift)).to be_valid
   end
 
   it "is invalid without a studio" do
@@ -32,11 +24,7 @@ end
   end
 
   it "is invalid with a duplicate combination of a studio, hours and date" do
-    shift_first = create(
-      :shift,
-      studio: "1",
-      date: "3rd Jul 2020",
-      hour: "1-6")
+    shift_first = create(:shift)
     shift_second = build(
       :shift,
       studio: "1",

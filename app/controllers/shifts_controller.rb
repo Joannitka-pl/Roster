@@ -2,9 +2,11 @@
 
 class ShiftsController < ApplicationController
   before_action :set_shift, only: %i[edit update destroy]
-  before_action :set_all_shifts, only: %i[ index update create destroy]
 
-  def index; end
+
+  def index
+    @shifts = Shift.all
+  end
 
   def new
     @shift = Shift.new.decorate
@@ -16,7 +18,7 @@ class ShiftsController < ApplicationController
     @shift = Shift.new(shift_params).decorate
     if @shift.save
       flash[:notice] = t('.notice')
-      redirect_to action: "index"
+      redirect_to shifts_path
     else
       render :new
     end
@@ -25,7 +27,7 @@ class ShiftsController < ApplicationController
   def update
     if @shift.update(shift_params)
       flash[:notice] = t('.notice')
-      redirect_to action: "index"
+      redirect_to shifts_path
     else
       render :new
     end
@@ -34,7 +36,7 @@ class ShiftsController < ApplicationController
   def destroy
     @shift.destroy
     flash[:notice] = t('.notice')
-    redirect_to action: "index"
+    redirect_to shifts_path
   end
 
   private
@@ -43,11 +45,7 @@ class ShiftsController < ApplicationController
     @shift = Shift.find(params[:id]).decorate
   end
 
-  def set_all_shifts
-    @shifts = Shift.all
-  end
-
   def shift_params
-    params.require(:shift).permit(:date, :hour, :user_id, :studio)
+    params.require(:shift).permit(:date, :hour, :studio)
   end
 end

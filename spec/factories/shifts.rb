@@ -1,8 +1,7 @@
 FactoryBot.define do
-  time = Time.zone.now - rand(3000).days
   factory :shift do
-    studio { Shift.studios.keys.sample }
-    hour { Shift.hours.keys.sample }
-    date { time.to_datetime }
+      studio { "1" }
+      date  { "3rd Jul 2020" }
+      hour { "1-6" }
   end
 end

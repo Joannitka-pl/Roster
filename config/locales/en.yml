@@ -39,12 +39,12 @@ en:
       error: Could not update shift
     destroy:
       notice: Shift was successfully removed
-    edit_header_html: <h1>Edit shift</h1>
-    new_header_html: <h1>Add new shift</h1>
+    edit_header: Edit shift
+    new_header: Add new shift
     table_headers:
-      studio_html: <th>Studio</th>
-      hours_html: <th>Hours</th>
-      date_html: <th>Date</th>
+      studio_html: Studio
+      hours_html: Hours
+      date_html: Date
 
     
     
