@@ -3,7 +3,6 @@
 class ShiftsController < ApplicationController
   before_action :set_shift, only: %i[edit update destroy]
 
-
   def index
     @shifts = Shift.all
   end
