@@ -1,23 +1,28 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe User do
+  it 'has a valid factory' do
+    expect(FactoryBot.build(:user)).to be_valid
+  end
+
+describe User, type: :model do
   it 'is an instance of User class' do
     expect(User.new).to be_kind_of User
   end
 
-  it 'has to have an email and password' do
+  it 'is valid with an email and password' do
     user = User.new(email: 'tester@example.com', password: 'password')
     expect(user).to be_valid
   end
 
   it 'is invalid without an email' do
-    user = User.new(email: nil)
+    user = FactoryBot.build(:user, email: nil)
     user.valid?
     expect(user.errors[:email]).to include("can't be blank")
   end
 
-  it 'is not valid without a password' do
-    user = User.new(password: nil)
+  it 'is invalid without a password' do
+    user = FactoryBot.build(:user, password: nil)
     user.valid?
     expect(user.errors[:password]).to include("can't be blank")
   end
@@ -39,5 +44,6 @@ RSpec.describe User, type: :model do
     user = User.new(password: '123')
     user.valid?
     expect(user.errors[:password]).to include('is too short (minimum is 6 characters)')
+  end
   end
 end
