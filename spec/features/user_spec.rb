@@ -1,10 +1,12 @@
 require 'rails_helper'
+require 'pry'
 
 feature 'User management' do
   before :each do
-    create(:user)
     visit root_path
   end
+
+  let(:user) { create(:user) }
 
   scenario 'adds a new user' do
     expect {
@@ -19,9 +21,11 @@ feature 'User management' do
     expect(page).to have_content 'Welcome! You have signed up successfully.'
   end
 
+
   scenario 'logs in an existing user' do
-    sign_in :user
-    expect(page).to  have_current_path(root_path)
+    
+    login user
+    expect(current_path).to eq root_path
     expect(page).to have_content 'user'
     expect(page).to have_content 'Signed in successfully.'
   end
