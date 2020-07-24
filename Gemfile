@@ -56,6 +56,8 @@ group :test do
   gem 'database_cleaner'
   gem 'ffaker'
   gem 'launchy'
+  gem 'show_me_the_cookies'
+  gem 'timecop'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
