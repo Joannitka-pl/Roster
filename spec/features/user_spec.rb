@@ -3,14 +3,14 @@
 require 'rails_helper'
 require 'pry'
 
-feature 'User management' do
+RSpec.describe 'User management' do
   before :each do
     visit root_path
   end
 
   let(:user) { create(:user) }
 
-  scenario 'adds a new user' do
+  it 'adds a new user' do
     expect {
       click_link 'Sign up'
       fill_in 'Email', with: 'user1@example.com'
@@ -19,36 +19,51 @@ feature 'User management' do
       click_button 'Sign up'
     }.to change(User, :count).by(1)
     expect(current_path).to eq root_path
-    expect(page).to have_content 'user1'
-    expect(page).to have_content 'Welcome! You have signed up successfully.'
+
+      within('header') do
+      expect(page).to have_content 'user1'
+      end
+      within('body')do
+      expect(page).to have_content 'Welcome! You have signed up successfully.'
+      end
   end
 
-  scenario 'logs in an existing user' do
+  it 'logs in an existing user' do
     login user
     expect(current_path).to eq root_path
+
+    within('body') do
     expect(page).to have_content 'Signed in successfully.'
+    end
   end
 
-  scenario 'logs out existing user' do
+  it 'logs out existing user' do
     login user
     click_link 'Logout'
     expect(current_path).to eq new_user_session_path
     expect(page).to have_content 'You need to sign in or sign up before continuing.'
   end
 
-  scenario 'edits email of logged in user' do
+  it 'edits email of logged in user' do
     login user
     click_link 'Edit profile'
     expect(current_path).to eq edit_user_registration_path
+
+    within('header') do
     expect(page).to have_content 'Edit User'
+    end
+
     fill_in 'Email', with: 'user_changed@example.com'
-    fill_in 'Current password', with: user.password
+    fill_in 'Current password', with: '123456'
     click_button 'Update'
     expect(current_path).to eq root_path
+    
+    within('body') do
     expect(page).to have_content 'Your account has been updated successfully.'
+    end
   end
 
-  scenario 'edits password of logged in user' do
+  it 'edits password of logged in user' do
     login user
     click_link 'Edit profile'
     expect(current_path).to eq edit_user_registration_path
@@ -59,10 +74,13 @@ feature 'User management' do
     fill_in 'Current password', with: user.password
     click_button 'Update'
     expect(current_path).to eq root_path
+    
+    within('body') do
     expect(page).to have_content 'Your account has been updated successfully.'
+    end  
   end
 
-  scenario 'remembers user login with rember me option' do
+  it 'remembers user login with rember me option' do
     login_with_remember_me user
     expire_cookies
     Timecop.freeze(Date.today + 14) do
@@ -71,7 +89,7 @@ feature 'User management' do
     end
   end
 
-  scenario 'forgets user after 2 weeks from login with remember me option' do
+  it 'forgets user after 2 weeks from login with remember me option' do
     login_with_remember_me user
     expire_cookies
 
@@ -81,14 +99,14 @@ feature 'User management' do
     end
   end
 
-  scenario 'forgets user after close browser without remember me option' do
+  it 'forgets user after close browser without remember me option' do
     login user
     expire_cookies
     visit '/'
     expect(page).to have_button 'Log in'
   end
 
-  scenario 'deletes user' do
+  it 'deletes user' do
     login user
     click_link 'Edit profile'
     click_button 'Cancel my account'

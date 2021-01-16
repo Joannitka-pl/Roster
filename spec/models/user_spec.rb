@@ -10,11 +10,6 @@ describe User, type: :model do
     expect(User.new).to be_kind_of User
   end
 
-  it 'is valid with an email and password' do
-    user = User.new(email: 'tester@example.com', password: 'password')
-    expect(user).to be_valid
-  end
-
   it 'is invalid without an email' do
     user = FactoryBot.build(:user, email: nil)
     user.valid?
