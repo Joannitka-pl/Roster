@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_24_102311) do
+ActiveRecord::Schema.define(version: 2021_01_18_154810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "shifts", force: :cascade do |t|
-    t.datetime "date"
-    t.integer "hour"
+    t.datetime "starting_at"
     t.integer "studio"
+    t.integer "duration"
   end
 
 end

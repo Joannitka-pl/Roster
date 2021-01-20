@@ -4,8 +4,5 @@ class ShiftDecorator < Draper::Decorator
   def studios_list
     Shift.studios.keys.map { |studio| [studio.titleize, studio] }
   end
-
-  def hours_list
-    Shift.hours.keys.map { |time| [time.titleize, time] }
-  end
+  
 end

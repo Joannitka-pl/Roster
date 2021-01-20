@@ -2,13 +2,13 @@
   <table>
     <tr>
       <th><%= t ('shifts.table_headers.studio_html') %></th>
-       <th><%= t ('shifts.table_headers.hours_html') %></th>
-       <th><%= t ('shifts.table_headers.date_html') %></th>
+       <th><%= t ('shifts.table_headers.starting_at_html') %></th>
+       <th><%= t ('shifts.table_headers.duration_html') %></th>
     </tr>
       <tr>
         <th><%= shift.studio %></th>
-        <th><%= shift.hour %></th>
-        <th><%= shift.date.strftime("%d/%m/%y")%></th>
+        <th><%= shift.starting_at.strftime("%d/%m/%y %H:%M")%></th>
+        <th><%= shift.duration%></th>
     </tr>
   </table>
   <%= link_to 'Edit', edit_shift_path(shift) %> |

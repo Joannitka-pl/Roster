@@ -15,6 +15,7 @@ class ShiftsController < ApplicationController
 
   def create
     @shift = Shift.new(shift_params).decorate
+  
     if @shift.save
       flash[:notice] = t('.notice')
       redirect_to shifts_path
@@ -45,6 +46,6 @@ class ShiftsController < ApplicationController
   end
 
   def shift_params
-    params.require(:shift).permit(:date, :hour, :studio)
+    params.require(:shift).permit(:starting_at, :duration, :studio)
   end
 end

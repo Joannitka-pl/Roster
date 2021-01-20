@@ -43,8 +43,5 @@ en:
     new_header: Add new shift
     table_headers:
       studio_html: Studio
-      hours_html: Hours
-      date_html: Date
-
-    
-    
+      starting_at_html: Shift start
+      duration_html: Duration
