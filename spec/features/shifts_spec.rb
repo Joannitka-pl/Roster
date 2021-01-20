@@ -27,16 +27,20 @@ feature 'Shift management' do
   end
 
   scenario 'edit shift' do
-    find(:xpath, "//a[@href='/shifts/#{@shift.id}/edit']").click
-    select('2', from: 'Studio')
-    click_on('Update Shift')
-    expect(page).to  have_current_path(shifts_path)
-    expect(page).to have_content('Shift was successfully updated')
+    within(".shift_#{@shift.id}") do
+      click_on('Edit')
+    end
+      select('2', from: 'Studio')
+      click_on('Update Shift')
+      expect(page).to  have_current_path(shifts_path)
+      expect(page).to have_content('Shift was successfully updated')
   end
 
   scenario 'delete shift' do
     expect {
-      find(:xpath, "//a[@href='/shifts/#{@shift.id}' and @data-method='delete']").click
+      within(".shift_#{@shift.id}") do
+        click_on('Delete')
+      end
     }.to change(Shift, :count).by(-1)
     expect(page).to  have_current_path(shifts_path)
     expect(page).to have_content('Shift was successfully removed')
