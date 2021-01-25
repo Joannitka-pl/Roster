@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class RostersController < ApplicationController
   before_action :authenticate_user! 
 
   def index

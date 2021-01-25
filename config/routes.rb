@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get 'welcome/index'
-  get 'home/index', as: :roster
+  get 'my_roster', to: 'rosters#index'
 
 end
