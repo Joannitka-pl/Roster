@@ -28,7 +28,6 @@ feature 'Shift management' do
   context 'for actions on exisiting shifts' do
     before :each do
       @shift = create(:shift)
-      visit shifts_path
     end
 
     scenario 'edit shift' do
