@@ -3,10 +3,9 @@
 class CreateShifts < ActiveRecord::Migration[6.0]
   def change
     create_table :shifts do |t|
-      t.datetime :date
-      t.integer :hour
+      t.datetime :starting_at
       t.integer :studio
-      t.integer :user_id
+      t.integer :duration
     end
   end
 end
