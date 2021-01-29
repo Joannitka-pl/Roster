@@ -3,7 +3,6 @@ require 'rails_helper'
 feature 'Shift management' do
 
   before :each do
-    @shift = create(:shift)
     visit shifts_path
   end
 
@@ -26,24 +25,30 @@ feature 'Shift management' do
     expect(page).to have_content('3')
   end
 
-  scenario 'edit shift' do
-    within(".shift_#{@shift.id}") do
-      click_on('Edit')
+  context 'for actions on exisiting shifts' do
+    before :each do
+      @shift = create(:shift)
+      visit shifts_path
     end
-      select('2', from: 'Studio')
-      click_on('Update Shift')
-      expect(page).to  have_current_path(shifts_path)
-      expect(page).to have_content('Shift was successfully updated')
-  end
 
-  scenario 'delete shift' do
-    expect {
+    scenario 'edit shift' do
       within(".shift_#{@shift.id}") do
-        click_on('Delete')
+        click_on('Edit')
       end
-    }.to change(Shift, :count).by(-1)
-    expect(page).to  have_current_path(shifts_path)
-    expect(page).to have_content('Shift was successfully removed')
-  end
+        select('2', from: 'Studio')
+        click_on('Update Shift')
+        expect(page).to  have_current_path(shifts_path)
+        expect(page).to have_content('Shift was successfully updated')
+    end
 
+    scenario 'delete shift' do
+      expect {
+        within(".shift_#{@shift.id}") do
+          click_on('Delete')
+        end
+      }.to change(Shift, :count).by(-1)
+      expect(page).to  have_current_path(shifts_path)
+      expect(page).to have_content('Shift was successfully removed')
+    end
+  end
 end
