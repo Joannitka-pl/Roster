@@ -1,19 +1,20 @@
+ <table class="shifts-table" style="text-align:center">
+  <tr>
+    <th><%= t ('shifts.table_headers.studio_html') %></th>
+    <th><%= t ('shifts.table_headers.starting_at_html') %></th>
+    <th><%= t ('shifts.table_headers.duration_html') %></th>
+    <th><%= t ('shifts.table_headers.actions_html') %></th>
+  </tr>
 <% @shifts.each do |shift| %>
-  <div class="shift_<%= shift.id %>">
-    <table>
-      <tr>
-        <th><%= t ('shifts.table_headers.studio_html') %></th>
-        <th><%= t ('shifts.table_headers.starting_at_html') %></th>
-        <th><%= t ('shifts.table_headers.duration_html') %></th>
-      </tr>
-        <tr>
-          <th><%= shift.studio %></th>
-          <th><%= shift.starting_at.strftime("%d/%m/%y %H:%M")%></th>
-          <th><%= shift.duration%></th>
-      </tr>
-    </table>
-    <%= link_to 'Edit', edit_shift_path(shift) %> |
-    <%= link_to 'Delete', shift_path(shift), method: :delete %>
-  </div>
+      <tr class="shift_<%= shift.id %>">
+          <td><%= shift.studio %></td>
+          <td><%= shift.starting_at.strftime("%d/%m/%y %H:%M")%></td>
+          <td><%= shift.duration%></td>
+          <td>
+            <%= link_to 'Edit', edit_shift_path(shift) %> |
+            <%= link_to 'Delete', shift_path(shift), method: :delete %>
+          </td>
+        </tr>
 <% end %>
+</table>
 <%= link_to 'Create shift', new_shift_path %>
