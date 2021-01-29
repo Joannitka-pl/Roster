@@ -1,13 +1,11 @@
 require 'rails_helper'
 
 feature 'Shift management' do
-
-  before :each do
-    visit shifts_path
-  end
-
+  let(:shift) { create(:shift) }
+ 
   scenario 'create shift and add new shift to shift list' do
     expect {
+      visit shifts_path 
       click_on('Create shift')
       select('2021', from: 'shift[starting_at(1i)]')
       select('February', from: 'shift[starting_at(2i)]')
@@ -28,6 +26,7 @@ feature 'Shift management' do
   context 'for actions on exisiting shifts' do
     before :each do
       @shift = create(:shift)
+      visit shifts_path 
     end
 
     scenario 'edit shift' do
