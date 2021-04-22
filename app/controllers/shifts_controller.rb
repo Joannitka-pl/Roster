@@ -20,6 +20,7 @@ class ShiftsController < ApplicationController
       flash[:notice] = t('.notice')
       redirect_to shifts_path
     else
+      flash.now[:alert] = t('.error')
       render :new
     end
   end
@@ -29,7 +30,8 @@ class ShiftsController < ApplicationController
       flash[:notice] = t('.notice')
       redirect_to shifts_path
     else
-      render :new
+      flash.now[:alert] = t('.error')
+      render :edit
     end
   end
 

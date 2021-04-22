@@ -6,10 +6,10 @@
     <th><%= t ('shifts.table_headers.actions_html') %></th>
   </tr>
 <% @shifts.each do |shift| %>
-      <tr class="shift_<%= shift.id %>">
-          <td><%= shift.studio %></td>
-          <td><%= shift.starting_at.strftime("%d/%m/%y %H:%M")%></td>
-          <td><%= shift.duration%></td>
+      <tr id="<%= dom_id(shift) %>" class="shits-table__shift">
+          <td class="shifts-table__studio"><%= shift.studio %></td>
+          <td class="shifts-table__starting-at"><%= shift.starting_at.strftime("%d/%m/%y %H:%M")%></td>
+          <td class="shifts-table__duration"><%= shift.duration%></td>
           <td>
             <%= link_to 'Edit', edit_shift_path(shift) %> |
             <%= link_to 'Delete', shift_path(shift), method: :delete %>

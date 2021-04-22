@@ -16,11 +16,14 @@ feature 'Shift management' do
       select('3', from: 'Studio')
       click_on('Create Shift')
     }.to change(Shift, :count).by(1)
-    expect(page).to  have_current_path(shifts_path)
-    expect(page).to have_content('New shift was successfully created')
-    expect(page).to have_content('02/02/21 08:00')
-    expect(page).to have_content('4')
-    expect(page).to have_content('3')
+      within('div#flash-message') do
+        expect(page).to have_selector(class:'success', text: 'New shift was successfully created', count: 1)
+      end
+      within('tr.shits-table__shift') do
+        expect(page).to have_selector(class:'shifts-table__studio', text: '3')
+        expect(page).to have_selector(class:'shifts-table__duration', text: '4')
+        expect(page).to have_selector(class:'shifts-table__starting-at', text: '02/02/21 08:00')
+      end 
   end
 
   context 'for actions on exisiting shifts' do
@@ -30,23 +33,27 @@ feature 'Shift management' do
     end
 
     scenario 'edit shift' do
-      within(".shift_#{@shift.id}") do
+      within("#shift_#{@shift.id}") do
         click_on('Edit')
       end
         select('2', from: 'Studio')
         click_on('Update Shift')
         expect(page).to  have_current_path(shifts_path)
-        expect(page).to have_content('Shift was successfully updated')
+        within('div#flash-message') do
+          expect(page).to have_selector(class:'success', text: 'Shift was successfully updated', count: 1)
+        end
     end
 
     scenario 'delete shift' do
       expect {
-        within(".shift_#{@shift.id}") do
+        within("#shift_#{@shift.id}") do
           click_on('Delete')
         end
       }.to change(Shift, :count).by(-1)
       expect(page).to  have_current_path(shifts_path)
-      expect(page).to have_content('Shift was successfully removed')
+      within('div#flash-message') do
+        expect(page).to have_selector(class:'success', text: 'Shift was successfully removed', count: 1)
+      end
     end
   end
 end
