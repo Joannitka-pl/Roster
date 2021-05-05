@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  resources :shifts, except: :show
+
   devise_for :users
 
   root 'welcome#index'

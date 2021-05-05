@@ -1,0 +1,10 @@
+     <%= form_with model: @shift, local: true do |f| %>
+     <%= render 'shared/errors' %>
+      <%= f.label :starting_at, 'Shift start date & time' %>
+      <%= f.datetime_select :starting_at, default: {minute: 00, hour: 00}%>
+      <%= f.label :duration, 'Duration' %>
+      <%= f.number_field :duration, in: 1.0..24.00, step: 1 %>
+      <%= f.label :studio, 'Studio' %>
+      <%= f.select :studio, @shift.studios_list %>
+      <%= f.submit %> 
+    <% end %>

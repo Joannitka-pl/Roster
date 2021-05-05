@@ -30,4 +30,19 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  shifts:
+    create:
+      notice: New shift was successfully created
+      error: Could not create shift
+    update:
+      notice: Shift was successfully updated
+      error: Could not update shift
+    destroy:
+      notice: Shift was successfully removed
+    edit_header: Edit shift
+    new_header: Add new shift
+    table_headers:
+      studio_html: Studio
+      starting_at_html: Shift start
+      duration_html: Duration
+      actions_html: Actions

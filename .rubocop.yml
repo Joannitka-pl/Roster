@@ -1,7 +1,7 @@
-Documentation:
+Style/Documentation:
   Enabled: false
 
-LineLength:
+Layout/LineLength:
   Max: 100
   Exclude:
     - spec/**/*
@@ -9,17 +9,17 @@ LineLength:
 Metrics/AbcSize:
   Max: 20
 
-MethodLength:
+Metrics/MethodLength:
   CountComments: false
   Max: 15
 
-BlockLength:
+Metrics/BlockLength:
   CountComments: false
   Max: 30
   Exclude:
     - spec/**/*
 
-ClassLength:
+Metrics/ClassLength:
   CountComments: false
   Max: 100
 
@@ -32,6 +32,9 @@ AllCops:
     - db/**/*
     - config/**/*
     - bin/**/*
+    - node_modules/**/*
+  NewCops: enable
+
 
 Style/ClassAndModuleChildren:
   Enabled: false
