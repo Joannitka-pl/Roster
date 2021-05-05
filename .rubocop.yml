@@ -3,6 +3,8 @@ Style/Documentation:
 
 Layout/LineLength:
   Max: 100
+  Exclude:
+    - spec/**/*
 
 Metrics/AbcSize:
   Max: 20
@@ -14,6 +16,8 @@ Metrics/MethodLength:
 Metrics/BlockLength:
   CountComments: false
   Max: 30
+  Exclude:
+    - spec/**/*
 
 Metrics/ClassLength:
   CountComments: false
@@ -33,4 +37,10 @@ AllCops:
 
 
 Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+Style/EmptyLinesAroundClassBody:
   Enabled: false
